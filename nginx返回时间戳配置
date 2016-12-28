@@ -1,0 +1,9 @@
+location /time {
+           set $time $msec;
+           if ( $time ~ ^([\d][\d][\d][\d][\d][\d][\d][\d][\d][\d])([.][\d][\d][\d])){
+              set $time $1;
+           }
+           default_type application/json;
+           expires 1s;
+           return 200 '{"stime": $time,"t":"c"}';
+        }
