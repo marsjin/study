@@ -1,0 +1,31 @@
+ /**
+ * 输出对象属性
+ * @param obj 对象
+ * @param typeValue 对象对应类型
+ * @param level 输出对象级别
+ *
+ * 默认输出3个级别的对象,可以更改参数
+ */
+function showObject(obj,typeV ='top',level=1){
+    if(typeof obj == 'object'){
+        for(var key in obj){
+            var value = obj[key];
+            if ((value != undefined)) {
+                if(typeof value =='object' && level <3){
+                    var ttValue = typeV + "." + key;
+                    showObject(value,ttValue,level +1);
+                }else {
+                    console.info("Level" + level +":"+ typeV + "." + key + "=" + value);
+                }
+            }else{
+                console.warn("Level" + level +":"+ typeV + "." + key);
+            }
+        }
+    }else{
+        if ((value != undefined)) {
+            console.info("Level" + level +":"+ typeV + " = " + plot);
+        }else {
+            console.warn("Level" + level +":"+ typeV);
+        }
+    }
+}
