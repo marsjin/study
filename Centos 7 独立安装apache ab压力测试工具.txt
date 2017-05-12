@@ -1,0 +1,32 @@
+1.独立安装
+
+ab运行需要依赖apr-util包，安装命令为：
+
+yum install apr-util
+
+安装依赖 yum-utils中的yumdownload 工具
+
+如果没有找到 yumdownload 命令可以
+
+yum install yum-utils
+
+安装完成后执行以下指令
+
+cd /opt
+mkdir abtmp
+cd abtmp
+yum install yum-utils.noarch
+yumdownloader httpd-tools*
+rpm2cpio httpd-tools*.rpm | cpio -idmv
+
+解开后就能得到独立的 ab可执行文件了。
+
+操作完成后 将会产生一个 usr 目录 ab文件就在这个usr 目录中
+cp usr/bin/ab /usr/bin
+
+简单使用说明
+1. 最基本的关心两个选项 -c -n
+例： ./ab -c 100 -n 10000 http://127.0.0.1/index.php
+
+-c 100 即：每次并发100个
+-n 10000 即： 共发送10000个请求
